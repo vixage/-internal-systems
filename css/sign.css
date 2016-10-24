@@ -1,0 +1,14 @@
+@charset "utf-8";
+/* CSS Document */
+
+	
+#box1{
+	float:right;
+	
+	}
+#box2{
+	float:left;
+	}
+#box{
+	overflow:hidden;
+}
