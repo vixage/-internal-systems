@@ -1,7 +1,14 @@
 ﻿<?php
 include 'includes.php';
 
-$name = $_POST['name'];
+if(empty($_POST['name'])){
+	$name = "とあるAGE社員";
+}
+else{
+	$name = $_POST['name'];
+}
+
+
 $title = $_POST['title'];
 $body = $_POST['body'];
 $pass = $_POST['pass'];

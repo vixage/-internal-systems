@@ -17,7 +17,7 @@ $result = mysql_query($sql);
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   <title>ヴィックスグループ専用掲示板</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/sign.css">
+  
 
 </head>
 <body>

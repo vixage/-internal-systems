@@ -5,7 +5,12 @@ $id2 = $_POST['id'];
 
 
 $body = $_POST['body'];
-$name = $_POST['name'];
+if (empty($_POST['name'])) {
+    $name = "とあるAGE社員";
+}else{
+    $name = $_POST['name'];
+}
+
 $pass = $_POST['pass'];
 
 $body = nl2br($body);
