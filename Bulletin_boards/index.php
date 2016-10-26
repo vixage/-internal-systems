@@ -21,39 +21,79 @@ $result = mysql_query($sql);
 
 </head>
 <body>
+
+
 <div class ="size">
-<div id="box">
-<div id="box1">
-<img src="image/Desktop.png">
-</div>
-<div id="box2">
   <h1>AGEチャンネル（Aちゃん）</h1>
-  </div>
-  </div>
-  
-  <!--<img src="image/AGEMANALL.png" width="950px">-->
+  <div id="logout">
+  <form method="post" action="logout.php">
+    
+    <input type="submit" name="submit" value="ログアウト" />
+</form>
+</div>
+  <div class="nav">
+
+<ul class="nl clearFix">
+<li><a href="#">メニュー項目1</a></li>
+<li><a href="#">メニュー項目2</a></li>
+<li><a href="#">メニュー項目3</a></li>
+<li><a href="#">メニュー項目4</a></li>
+<li><a href="#">メニュー項目5</a></li>
+</ul>
+
+</div>
+<h2>この掲示板について</h2>
+  <p>この掲示板はVixAgeの社員専用の掲示板です。
+  仕事についてや会社についてわからないことなどはもちろん、
+  趣味や遊びのことなど用途は各自にお任せいたします。
+  </p>
+  <p>頑張って作ったので良ければ皆さん使ってくださいー！</p>
 
   
 
-  
-  
-<h2><a href="thread_new.php">スレッド作成</a></h2>
-<table class="border">
+<table class="border"  width="950px">
 
 <?php while($thread = mysql_fetch_array($result)):?>
-	<tr><td width="400px"><a href="thread.php?id=<?php echo $thread['id'];?>"><?php echo $thread['title'];?></a></td>
-  <td width="130px">作成者：<?php echo $thread['name'];?></td>
-  <td width="220px"><?php echo $thread['created_at'];?></td>
+	<tr><td><a href="thread.php?id=<?php echo $thread['id'];?>"><?php echo $thread['title'];?></a></td>
+  <td>作成者：<?php echo $thread['name'];?></td>
+  <td><?php echo $thread['created_at'];?></td>
   
   </tr>
 <?php endwhile;?>
 
 </table>
 <div id ="top">
-<form method="post" action="logout.php">
-    
-    <input type="submit" name="submit" value="ログアウト" />
-</form></div>
+<h2>スレッド作成</h2>
+
+
+<form  action="thread_new2.php" method="post">
+<table>
+  <tr>
+    <th>名前</th>
+    <td><input type="text" name="name" value="<?php echo $_COOKIE['name'] ?>" maxlength="10" /></td>
+  </tr>
+  <tr>
+    <th>タイトル</th>
+    <td><input type="text" name="title" maxlength="50" /></td>
+  </tr>
+  <tr>
+    <th>内容</th>
+    <td><textarea name="body" style="height:170px" maxlength="1000" ></textarea></td>
+  </tr>
+  <tr>
+    <th>削除パスワート゛(数字4桁)：</th>
+    <td><input type="text" name="pass" maxlength="4"></td>
+  </tr>
+  <tr>
+    <td><input type="hidden" name="type" value="create" /></td>
+    <td><input type="hidden" name="type" value="$id" /></td>
+    <td><input type="submit" name="submit" value="作成" /></td>
+  </tr>
+</table>
+</form>
+</div>
+
+
 <p><a href="index.php">トップページに戻る</a></p>
 
 

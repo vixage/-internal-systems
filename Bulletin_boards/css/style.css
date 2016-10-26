@@ -13,6 +13,58 @@ background-color: #FFFFFF;
 
 }
 
+/* --- ナビゲーションバー --- */
+div.nav {
+width: 100%; /* ナビゲーションの幅 */
+background-color: #f9f9f9; /* ナビゲーションの背景色 */
+border-top: 1px #cccccc solid; /* 上境界線 */
+border-bottom: 1px #cccccc solid; /* 下境界線 */
+font-size: 80%;
+}
+
+/* --- メニューエリア --- */
+div.nav ul.nl {
+width: 600px; /* メニューの幅 */
+margin: 0 auto; /* センターに配置 */
+padding: 0;
+background-color: #ffffff; /* メニューの背景色 */
+border-right: 1px #cccccc solid; /* メニューの右境界線 */
+list-style-type: none;
+text-align: center;
+}
+
+/* --- メニュー項目 --- */
+div.nav ul.nl li {
+width: 20%; /* 項目の幅 */
+float: left;
+}
+
+/* --- リンク --- */
+div.nav ul.nl li a {
+display: block;
+position: relative; /* IE6用 */
+padding: 8px 2px; /* リンクエリアのパディング（上下、左右） */
+border-left: 1px #cccccc solid; /* リンクエリアの左境界線 */
+text-decoration: none; /* テキストの下線（なし） */
+}
+/* --- ポイント時の設定 --- */
+div.nav ul.nl li a:hover {
+background-color: #f0ffff; /* ポイント時の背景色 */
+text-decoration: underline; /* テキストの下線（あり） */
+}
+
+/* --- clearfix --- */
+.clearFix:after {
+content: ".";
+display: block;
+height: 0;
+clear: both;
+visibility: hidden;
+}
+.clearFix {
+min-height: 1px;
+}
+
 .size{
 	width: 950px;
     margin: 0 auto;

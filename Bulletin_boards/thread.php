@@ -43,9 +43,39 @@ $result_res = mysql_query($sql_res);
       削除パスワード：<input type="password" name="pass">
       <input type="submit" value="削除">
     </form>
+    <hr>
+<div>
 
-
-<p><a href="res_new.php?id=<?php echo $id;?>">書き込み</a></p>
+<h2>書き込み</h2>
+<form method="post" action="res_new2.php">
+<table>
+  
+  <tr>
+    <th>名前</th>
+    <td><input type="text" name="name" value="<?php echo $_COOKIE['name'] ?>" maxlength="20"/></td>
+  </tr>
+  <tr>
+    <th>内容</th>
+    
+    <td><textarea name="body" maxlength="1000" ></textarea></td>
+  </tr>
+  <tr>
+    <td>
+      <input type="hidden" name="id" value="<?php echo $id;?>" />
+      <input type="hidden" name="type" value="create" />
+    </td>
+    <tr>
+    <th>削除<br>パスワート゛<br>(数字4桁)</th>
+    <td><input type="text" name="pass" maxlength="4" ></td>
+  </tr>
+    
+    <td>
+      <input type="submit" name="submit" value="投稿" /></td>
+    
+  </tr>
+</table>
+</form>
+</div>
 
 
 <?php while($res = mysql_fetch_array($result_res)):?>
