@@ -51,6 +51,7 @@ if (isset($_POST["login"])) {
                     foreach ($stmt as $row) {
                         $row['name'];  // ユーザー名
                     }
+                    setcookie('name',$row['name'],time() +3600);
                     $_SESSION["USERID"] = $row['name'];
                     //セッションID再作成
                     session_regenerate_id(true);

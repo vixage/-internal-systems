@@ -26,7 +26,7 @@ $result = mysql_query($sql);
 
 <div class ="size">
   <h1 class="box1">AGEチャンネル（Aちゃん）</h1>
-  <div id="logout" class="box2">
+  <div id="logout" class="box4">
   <form method="post" action="logout.php">
     
     <input type="submit" name="submit" value="ログアウト" />
@@ -36,11 +36,11 @@ $result = mysql_query($sql);
   <div class="nav">
 
 <ul class="nl clearFix">
-<li><a href="#">メニュー項目1</a></li>
-<li><a href="#">メニュー項目2</a></li>
-<li><a href="#">メニュー項目3</a></li>
-<li><a href="#">メニュー項目4</a></li>
-<li><a href="#">メニュー項目5</a></li>
+<li><a href="index.php">TOP PAGE</a></li>
+<li><a href="rule.php">GUIDLINES</a></li>
+<li><a href="#">DEVELOPMENT</a></li>
+<li><a href="https://github.com/vixage/-internal-systems">GITHUB SOURCE</a></li>
+<li><a href="mailto:f.ochiai@vixage.co.jp">CONTACT</a></li>
 </ul>
 
 </div>
@@ -51,41 +51,17 @@ $result = mysql_query($sql);
 <div class="boxsize">
 <h2>この掲示板について</h2>
   <p>この掲示板はVixAgeの社員専用掲示板です。<br>
-  <p>Vixグループ全体（communication/VIXX/real estate/AGE）に関することなら書き込み自由です！<br>
-また、各スレッドの投稿内容管理はスレッド作成者に行っていただきます。<br>
-投稿内容が管理されず内容が荒れるスレッドは管理人が削除します。<br>
+  <p>会社に関することはもちろん,、趣味や遊びのことなど使用用途は各自にお任せいたします！<br>
+<h3>注意事項</h3>
+<p>投稿内容が管理されず内容が荒れるスレッドは管理人が削除します。<br>
 内容が管理されないスレッドとは、この<a href="rule.php">ガイドライン</a>に反する内容を含むものです。</p>
-
-  <p>仕事についてや会社についてわからないことなどはもちろん、
-  趣味や遊びのことなど用途は各自にお任せいたします。
-  </p>
   <p>頑張って作ったので良ければ皆さん使ってくださいー！ヾ(。゜▽゜)ﾉ梨汁ﾌﾞｼｬｰ:;:.,*;”</p>
 
   </div>
 
-  <div class="box1">
-<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fvixage%3Fref%3Dhl&tabs=timeline&width=400&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="400" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe></div>
   
-  <div class="box3"></div>
-  <hr>
-
-
-<table width="950px">
-
-<?php while($thread = mysql_fetch_array($result)):?>
-	<tr><td><a href="thread.php?id=<?php echo $thread['id'];?>"><?php echo $thread['title'];?></a></td>
-  <td>作成者：<?php echo $thread['name'];?></td>
-  <td><?php echo $thread['created_at'];?></td>
-  
-  </tr>
-<?php endwhile;?>
-
-</table>
-<hr>
-
+  <div class="waku">
  <h2>スレッド作成</h2>
-
-
 <form  action="thread_new2.php" method="post">
 <table>
 
@@ -116,6 +92,30 @@ $result = mysql_query($sql);
   </tr>
 </table>
 </form>
+</div>
+  
+  <div class="box3"></div>
+<table class="sample_01" width="950px">
+<tbody>
+<tr>
+<th>作成日時</th>
+<th>スレッド名</th>
+<th>作成者</th>
+
+</tr>
+<?php while($thread = mysql_fetch_array($result)):?>
+  <tr>
+  <td><?php echo $thread['created_at'];?></td>
+  <td><a href="thread.php?id=<?php echo $thread['id'];?>"><?php echo $thread['title'];?></a></td>
+  <td><?php echo $thread['name'];?></td>
+  
+  
+  </tr>
+<?php endwhile;?>
+
+</tbody>
+</table>
+
 
 <hr>
 

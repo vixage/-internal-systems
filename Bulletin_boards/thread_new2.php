@@ -6,6 +6,7 @@ if(empty($_POST['name'])){
 }
 else{
 	$name = $_POST['name'];
+	
 }
 
 

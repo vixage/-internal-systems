@@ -130,8 +130,47 @@ float:right;
 .box3{
 	clear:left;
 }
+.box4{
+	float: right;
+}
 
 .boxsize{
 	float: left;
-	width:550px;
+	width:60%;
+	0px;
 }
+
+.color8{
+	background-color: #DDDDDD;
+	margin: 0px;
+}
+
+.sample_01{
+width: 100%;
+border-collapse: collapse;
+}
+.sample_01 th{
+width: 25%;
+padding: 6px;
+text-align: left;
+vertical-align: top;
+color: #333;
+background-color: #eee;
+border: 1px solid #b9b9b9;
+}
+.sample_01 td{
+padding: 6px;
+background-color: #fff;
+border: 1px solid #b9b9b9;
+}
+
+.waku{
+	background-color: #F4F4F4;
+	width: 40%;
+	float: left;
+}
+
+.waku2{
+	background-color: #F4F4F4;
+	width: 40%;
+	}
