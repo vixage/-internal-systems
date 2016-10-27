@@ -51,7 +51,7 @@ if (isset($_POST["login"])) {
                     foreach ($stmt as $row) {
                         $row['name'];  // ユーザー名
                     }
-                    setcookie('name',$row['name'],time() +3600);
+                    setcookie('name',$row['name'],time() +3600*60);
                     $_SESSION["USERID"] = $row['name'];
                     //セッションID再作成
                     session_regenerate_id(true);
@@ -111,7 +111,7 @@ if (isset($_POST["login"])) {
 
 
         </div>
-        <p><a href="forget.html">パスワードを忘れたら</a></p>
+        <p><a href="form.html">パスワードを忘れたら</a></p>
         </div>
         </div>
 

@@ -1,10 +1,17 @@
 <?php
 include 'includes.php';
 
+$number = 20;
+
 
 //DB接続
 $dbh=mysql_connect ("localhost", "root", "1125") or die ('I cannot connect to the database because: ' . mysql_error());
 mysql_select_db ("vixage");
+
+$page = 0;
+if(isset($_GET['page']) && $_GET['page'] > 0){
+  $page = intval($_GET['page']) -1;
+}
 
 
 //スレッドを取得
@@ -118,6 +125,35 @@ $result = mysql_query($sql);
 
 
 <hr>
+<?php
+
+function paging($limit,$page,$disp=5){
+    //$dispはページ番号の表示数
+    $page = empty($_GET["page"])? 1:$_GET["page"];
+     
+    $next = $page+1;//前のページ番号
+    $prev = $page-1;//次のページ番号
+     
+    if($page != 1 ) {//最初のページ以外で「前へ」を表示
+         print '<a href="?page='.$prev.'">&laquo; 前へ</a>';
+    }
+    if($page < $limit){//最後のページ以外で「次へ」を表示
+        print '<a href="?page='.$next.'">次へ &raquo;</a>';
+    }
+     
+    /*確認用
+    print "current:".$page."<br>";
+    print "next:".$next."<br>";
+    print "prev:".$prev."<br>";*/
+ 
+}
+ 
+$limit = 10;//最大ページ数
+$page = empty($_GET["page"])? 1:$_GET["page"];//ページ番号
+ 
+paging($limit, $page);
+
+?>
 
 <p><a href="index.php">トップページに戻る</a></p>
 

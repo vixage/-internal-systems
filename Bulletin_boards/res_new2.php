@@ -11,6 +11,8 @@ if (empty($_POST['name'])) {
     $name = $_POST['name'];
 }
 
+
+
 //$pass = $_POST['pass'];
 
 $body = nl2br($body);

@@ -69,7 +69,7 @@ if (isset($_POST["signUp"])) {
     </head>
     <body>
         <div class="size">
-        <h1>ユーザー情報を追加してください</h1>
+        <h1>ユーザー情報を追加してください（管理者専用）</h1>
         <!-- $_SERVER['PHP_SELF']はXSSの危険性があるので、actionは空にしておく -->
         <!-- <form id="loginForm" name="loginForm" action="<?php print($_SERVER['PHP_SELF']) ?>" method="POST"> -->
         <form id="loginForm" name="loginForm" action="" method="POST">
@@ -89,8 +89,6 @@ if (isset($_POST["signUp"])) {
                 <input type="submit" id="signUp" name="signUp" value="新規登録">
             </div>
         </form>
-        <p>管理者パスワードをお持ちでない方は、下記よりID申請をお願いいたします。</p>
-        <a href="mailto:f.ochiai@vixage.co.jp">ID申請はこちら</a></p>
         <br>
         <form action="sign.php">
             <input type="submit" value="戻る">
