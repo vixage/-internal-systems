@@ -11,7 +11,7 @@ if (empty($_POST['name'])) {
     $name = $_POST['name'];
 }
 
-$pass = $_POST['pass'];
+//$pass = $_POST['pass'];
 
 $body = nl2br($body);
 
@@ -26,8 +26,8 @@ $password = '1125';
 			$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 			//プリペアドステートメント作成
             $stmt = $db->prepare("
-            INSERT INTO responses (thread_id,body,name,created_at,pass)
-            VALUES(:thread_id,:body,:name,now(),:pass)"
+            INSERT INTO responses (thread_id,body,name,created_at)
+            VALUES(:thread_id,:body,:name,now())"
             );
 
             //パラメーターを割り当て
@@ -35,7 +35,7 @@ $password = '1125';
 $stmt->bindParam(':thread_id',$id2,PDO::PARAM_STR);
 $stmt->bindParam(':body',$body,PDO::PARAM_STR);
 $stmt->bindParam(':name',$name,PDO::PARAM_STR);
-$stmt->bindParam(':pass',$pass,PDO::PARAM_STR);
+//$stmt->bindParam(':pass',$pass,PDO::PARAM_STR);
 
 
 

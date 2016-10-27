@@ -38,11 +38,11 @@ $result_res = mysql_query($sql_res);
 <p>名前:<?php echo $thread['name'];?></p>
 <p>作成日時:<?php echo $thread['created_at'];?></p>
 <p><?php echo $thread['body'];?></p>
-<form action="delete2.php" method="post">
+<!--<form action="delete2.php" method="post">
       <input type="hidden" name="id" value="<?php echo $id?>">
       削除パスワード：<input type="password" name="pass">
       <input type="submit" value="削除">
-    </form>
+    </form>-->
     <hr>
 <div>
 
@@ -64,10 +64,10 @@ $result_res = mysql_query($sql_res);
       <input type="hidden" name="id" value="<?php echo $id;?>" />
       <input type="hidden" name="type" value="create" />
     </td>
-    <tr>
+    <!--<tr>
     <th>削除<br>パスワート゛<br>(数字4桁)</th>
     <td><input type="text" name="pass" maxlength="4" ></td>
-  </tr>
+  </tr>-->
     
     <td>
       <input type="submit" name="submit" value="投稿" /></td>
@@ -86,8 +86,8 @@ $result_res = mysql_query($sql_res);
   <p>投稿日時:<?php echo $res['created_at'];?></p>
   <form action="delete.php" method="post">
       <input type="hidden" name="id" value="<?php echo $id?>">
-      削除パスワード：<input type="password" name="pass">
-      <input type="submit" value="削除">
+      <!--削除パスワード：<input type="password" name="pass">
+      <input type="submit" value="削除">-->
     </form>
 <?php endwhile;
 

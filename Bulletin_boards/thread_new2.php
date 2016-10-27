@@ -11,7 +11,8 @@ else{
 
 $title = $_POST['title'];
 $body = $_POST['body'];
-$pass = $_POST['pass'];
+
+//$pass = $_POST['pass'];
 $id2 = $_POST['id'];
 
 $body = nl2br($body);
@@ -29,15 +30,15 @@ $password = '1125';
 			mysql_query("set names utf-8");
 			//プリペアドステートメント作成
             $stmt = $db->prepare("
-            INSERT INTO threads (name,title,body,created_at,pass)
-            VALUES(:name,:title,:body,now(),:pass)"
+            INSERT INTO threads (name,title,body,created_at)
+            VALUES(:name,:title,:body,now())"
             );
 
             //パラメーターを割り当て
 $stmt->bindParam(':name',$name,PDO::PARAM_STR);
 $stmt->bindParam(':title',$title,PDO::PARAM_STR);
 $stmt->bindParam(':body',$body,PDO::PARAM_STR);
-$stmt->bindParam(':pass',$pass,PDO::PARAM_STR);
+//$stmt->bindParam(':pass',$pass,PDO::PARAM_STR);
 
 //クエリの実行
 $stmt->execute();

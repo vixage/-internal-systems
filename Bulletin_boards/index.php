@@ -23,14 +23,16 @@ $result = mysql_query($sql);
 <body>
 
 
+
 <div class ="size">
-  <h1>AGEチャンネル（Aちゃん）</h1>
-  <div id="logout">
+  <h1 class="box1">AGEチャンネル（Aちゃん）</h1>
+  <div id="logout" class="box2">
   <form method="post" action="logout.php">
     
     <input type="submit" name="submit" value="ログアウト" />
 </form>
 </div>
+<div class="box3"></div>
   <div class="nav">
 
 <ul class="nl clearFix">
@@ -42,16 +44,33 @@ $result = mysql_query($sql);
 </ul>
 
 </div>
+
+<div id="fb-root"></div>
+
+
+<div class="boxsize">
 <h2>この掲示板について</h2>
-  <p>この掲示板はVixAgeの社員専用の掲示板です。
-  仕事についてや会社についてわからないことなどはもちろん、
+  <p>この掲示板はVixAgeの社員専用掲示板です。<br>
+  <p>Vixグループ全体（communication/VIXX/real estate/AGE）に関することなら書き込み自由です！<br>
+また、各スレッドの投稿内容管理はスレッド作成者に行っていただきます。<br>
+投稿内容が管理されず内容が荒れるスレッドは管理人が削除します。<br>
+内容が管理されないスレッドとは、この<a href="rule.php">ガイドライン</a>に反する内容を含むものです。</p>
+
+  <p>仕事についてや会社についてわからないことなどはもちろん、
   趣味や遊びのことなど用途は各自にお任せいたします。
   </p>
-  <p>頑張って作ったので良ければ皆さん使ってくださいー！</p>
+  <p>頑張って作ったので良ければ皆さん使ってくださいー！ヾ(。゜▽゜)ﾉ梨汁ﾌﾞｼｬｰ:;:.,*;”</p>
 
+  </div>
+
+  <div class="box1">
+<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fvixage%3Fref%3Dhl&tabs=timeline&width=400&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="400" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe></div>
   
+  <div class="box3"></div>
+  <hr>
 
-<table class="border"  width="950px">
+
+<table width="950px">
 
 <?php while($thread = mysql_fetch_array($result)):?>
 	<tr><td><a href="thread.php?id=<?php echo $thread['id'];?>"><?php echo $thread['title'];?></a></td>
@@ -62,12 +81,14 @@ $result = mysql_query($sql);
 <?php endwhile;?>
 
 </table>
-<div id ="top">
-<h2>スレッド作成</h2>
+<hr>
+
+ <h2>スレッド作成</h2>
 
 
 <form  action="thread_new2.php" method="post">
 <table>
+
   <tr>
     <th>名前</th>
     <td><input type="text" name="name" value="<?php echo $_COOKIE['name'] ?>" maxlength="10" /></td>
@@ -76,23 +97,27 @@ $result = mysql_query($sql);
     <th>タイトル</th>
     <td><input type="text" name="title" maxlength="50" /></td>
   </tr>
+
   <tr>
     <th>内容</th>
     <td><textarea name="body" style="height:170px" maxlength="1000" ></textarea></td>
   </tr>
-  <tr>
+ <!--<tr>
     <th>削除パスワート゛(数字4桁)：</th>
     <td><input type="text" name="pass" maxlength="4"></td>
-  </tr>
+  </tr>-->
   <tr>
     <td><input type="hidden" name="type" value="create" /></td>
     <td><input type="hidden" name="type" value="$id" /></td>
-    <td><input type="submit" name="submit" value="作成" /></td>
+    
+  </tr>
+  <tr>
+  <td><input type="submit" name="submit" value="作成" /></td>
   </tr>
 </table>
 </form>
-</div>
 
+<hr>
 
 <p><a href="index.php">トップページに戻る</a></p>
 

@@ -118,3 +118,20 @@ float:right;
 	width: 300px;
 	
 }
+
+.box1{
+	float: left;
+}
+
+.box2{
+	float: left;
+}
+
+.box3{
+	clear:left;
+}
+
+.boxsize{
+	float: left;
+	width:550px;
+}
