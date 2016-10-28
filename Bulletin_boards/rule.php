@@ -7,6 +7,7 @@
 
 </head>
 <body>
+<?php include( $_SERVER['DOCUMENT_ROOT'] . '/common/global_menu.php'); ?>
 
 <h1>■AGEチャンネル（仮）概要</h1>
 <p>Vixグループ全体（communication/VIXX/real estate/AGE）に関することなら書き込みＯＫです。<br>
@@ -90,5 +91,6 @@ AGEチャンネル（仮）のガイドラインは誰の許可なくAGEチャ�
 　　　　 |||　||　|||<br>
 　　　　　 ili　ili<br>
 　　　　　､ﾊ/|,,､</p>
+<?php include( $_SERVER['DOCUMENT_ROOT'] . '/common/footer.php'); ?>
 </body>
 </html>

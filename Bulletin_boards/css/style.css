@@ -1,84 +1,72 @@
 @charset "utf-8";
 /* CSS Document */
 
+/* 一括で全ての要素の余白をゼロに指定 */
+* { margin: 0; padding: 0; }
+/* 文字 */
+p {
+		line-height: 1.5em;
+		margin-bottom: 0.5em;
+}
 
+ul {
+		margin-left: 2em;
+		margin-bottom: 1em;
+}
+
+ol {
+		margin-left: 2.5em;
+		margin-bottom: 1em;
+}
+
+li {
+		line-height: 1.5em;
+		margin-bottom: 0.5em;
+}
+
+img { border: 0; }
+
+/* 全体的なリンク */
+a:link,
+a:visited,
+a:hover,
+a:active { text-decoration: underline; }
+
+a { overflow: hidden; }
+a:link { color: #00f; }
+a:visited { color: #90f; }
+a:hover { color: #f00; }
+a:active { color: #f00; }
+
+.clear { clear: both; }
+
+/* -------------------------------------------------------------
+   [1] レイアウトに関する指定 */
 body {
-margin: 0;
-padding: 0;
-line-height:1.4;
-color:#333;
-font-family:Arial, sans-serif;
-font-size:0.9em;
-background-color: #FFFFFF;
-
+		text-align: center;
+		font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+		padding: 0;
+		margin: 0;
 }
-
-/* --- ナビゲーションバー --- */
-div.nav {
-width: 100%; /* ナビゲーションの幅 */
-background-color: #f9f9f9; /* ナビゲーションの背景色 */
-border-top: 1px #cccccc solid; /* 上境界線 */
-border-bottom: 1px #cccccc solid; /* 下境界線 */
-font-size: 80%;
-}
-
-/* --- メニューエリア --- */
-div.nav ul.nl {
-width: 600px; /* メニューの幅 */
-margin: 0 auto; /* センターに配置 */
-padding: 0;
-background-color: #ffffff; /* メニューの背景色 */
-border-right: 1px #cccccc solid; /* メニューの右境界線 */
-list-style-type: none;
-text-align: center;
-}
-
-/* --- メニュー項目 --- */
-div.nav ul.nl li {
-width: 20%; /* 項目の幅 */
-float: left;
-}
-
-/* --- リンク --- */
-div.nav ul.nl li a {
-display: block;
-position: relative; /* IE6用 */
-padding: 8px 2px; /* リンクエリアのパディング（上下、左右） */
-border-left: 1px #cccccc solid; /* リンクエリアの左境界線 */
-text-decoration: none; /* テキストの下線（なし） */
-}
-/* --- ポイント時の設定 --- */
-div.nav ul.nl li a:hover {
-background-color: #f0ffff; /* ポイント時の背景色 */
-text-decoration: underline; /* テキストの下線（あり） */
-}
-
-/* --- clearfix --- */
-.clearFix:after {
-content: ".";
-display: block;
-height: 0;
-clear: both;
-visibility: hidden;
-}
-.clearFix {
-min-height: 1px;
-}
-
-.size{
+#wrapper{
 	width: 950px;
-    margin: 0 auto;
+		margin: 0 auto;
+		padding: 0 10px;
+		background-image: url(../img/bg-wrap.jpg);
+		background-repeat: no-repeat;
+		background-position: 0 90px;
+}
 
-}
-h1{
-	font-size: 25px;
-	margin: 0px;
+#header {
+		position: relative;
+		width: 100%;
+		
+		
+		background-repeat: no-repeat;
+		background-position: 0 100%;
 }
 
-.color2 p{
-	width: 950px;
-    margin: 0 auto;
-}
+
 textarea {
 width: 300px;
 height: 10em;
@@ -88,36 +76,7 @@ table td{
 	margin: 20px;
 }
 
-.big{ 
-	font-size: 20px;
-	margin: 0px;
-}
-#right{
-float:right;
-}
 
-.border { border-style : dotted;
-      border-width : 5px;
-      padding : 5px;
-}
-
-.border { border-style : dotted;
-      border-width : 5px;
-      padding : 5px;
-}
-.border2 { border-style : groove;
-      border-width : 5px;
-      padding : 5px;
-}
-
-#top{
-	margin-top: 10px;
-}
-
-#box{
-	width: 300px;
-	
-}
 
 .box1{
 	float: left;
@@ -140,37 +99,16 @@ float:right;
 	0px;
 }
 
-.color8{
+.threadtitle{
 	background-color: #DDDDDD;
 	margin: 0px;
 }
 
-.sample_01{
-width: 100%;
-border-collapse: collapse;
-}
-.sample_01 th{
-width: 25%;
-padding: 6px;
-text-align: left;
-vertical-align: top;
-color: #333;
-background-color: #eee;
-border: 1px solid #b9b9b9;
-}
-.sample_01 td{
-padding: 6px;
-background-color: #fff;
-border: 1px solid #b9b9b9;
-}
 
-.waku{
+
+.threadwaku{
 	background-color: #F4F4F4;
 	width: 40%;
 	float: left;
 }
 
-.waku2{
-	background-color: #F4F4F4;
-	width: 40%;
-	}

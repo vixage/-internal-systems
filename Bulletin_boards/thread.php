@@ -1,5 +1,5 @@
 ﻿<?php
-include 'includes.php';
+include 'common/checkLogin.php';
 
 // 1ページに表示されるコメントの数
   $num = 10;
@@ -29,13 +29,15 @@ $result_res = mysql_query($sql_res);
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title><?php echo $thread['title'];?></title>
 <link rel="stylesheet" href="css/style.css">
+ <link rel="stylesheet" href="css/menu.css">
 
 </head>
 <body>
-<div class ="size">
+<?php include( $_SERVER['DOCUMENT_ROOT'] . '/common/global_menu.php'); ?>
+<div id ="wrapper">
 
 <div class="boxsize">
-<h3 class="color8">タイトル:<?php echo $thread['title'];?></h3>
+<h3 class="threadtitle">タイトル:<?php echo $thread['title'];?></h3>
 <p>名前:<?php echo $thread['name'];?>作成日時:<?php echo $thread['created_at'];?></p>
 <p><?php echo $thread['body'];?></p>
 <!--<form action="delete2.php" method="post">
@@ -45,7 +47,7 @@ $result_res = mysql_query($sql_res);
     </form>-->
     </div>
 
-    <div class="waku">
+    <div class="threadwaku">
 
 <h2>書き込み</h2>
 <form method="post" action="res_new2.php">
@@ -79,7 +81,7 @@ $result_res = mysql_query($sql_res);
 </div>
 <div class="box3"></div>
    
-<hr>
+
 
 <?php while($res = mysql_fetch_array($result_res)):?>
   
@@ -96,16 +98,10 @@ $result_res = mysql_query($sql_res);
 
 
 ?>
- <hr>
 
 
 
-<p><a href="index.php">トップに戻る</a></p>
-
-
-<footer>        
-        <p>(C)2016 VIXAGE created by Fumitaka Ochiai</p>
-        </footer>
+<?php include( $_SERVER['DOCUMENT_ROOT'] . '/common/footer.php'); ?>
         </div>
 </body>
 </html>

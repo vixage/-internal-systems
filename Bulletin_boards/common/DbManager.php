@@ -1,11 +1,11 @@
 ﻿<?php
   function connect() {
-  $dsn = 'mysql:dbname=vixage; host=localhost; charset=utf8';
-  $usr = 'vixuser';
-  $passwd = 'password';
+  $dsn = 'mysql:host=localhost;dbname=vixage;charset=utf8';
+$user= 'root';
+$password = '1125';
 
   try {
-    $db = new PDO($dsn, $usr, $passwd);
+    $db = new PDO($dsn, $user, $password);
   } catch (PDOException $e) {
     exit("データベースに接続できません。：{$e->getMessage()}");
   }

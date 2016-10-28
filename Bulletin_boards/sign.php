@@ -111,7 +111,7 @@ if (isset($_POST["login"])) {
 
 
         </div>
-        <p><a href="form.html">パスワードを忘れたら</a></p>
+        <p><a href="form.php">パスワードを忘れたら</a></p>
         </div>
         </div>
 
@@ -122,7 +122,7 @@ if (isset($_POST["login"])) {
        
         <form method="post" action="reg.php">
 
-        <p>まだIDがない方は<a href="form.html">こちら</a></p>
+        <p>まだIDがない方は<a href="form.php">こちら</a></p>
     
     <p>管理者の方はこちら<input type="submit" name="submit" value="新規ユーザー登録" /></p>
 </form>

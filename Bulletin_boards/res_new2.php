@@ -1,5 +1,6 @@
 <?php
-include 'includes.php';
+include 'common/checkLogin.php';
+require_once 'common/DbManager.php';
 
 $id2 = $_POST['id'];
 
@@ -16,15 +17,9 @@ if (empty($_POST['name'])) {
 //$pass = $_POST['pass'];
 
 $body = nl2br($body);
-
-
-$dsn = 'mysql:host=localhost;dbname=vixage;charset=utf8';
-$user= 'root';
-$password = '1125';
-
 	
            try {
-            $db = new PDO($dsn, $user, $password);
+            $db = connect();
 			$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 			//プリペアドステートメント作成
             $stmt = $db->prepare("

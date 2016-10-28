@@ -1,5 +1,5 @@
 <?php
-include 'includes.php';
+include 'common/checkLogin.php';
 
 $number = 20;
 
@@ -24,6 +24,8 @@ $result = mysql_query($sql);
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   <title>ヴィックスグループ専用掲示板</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/menu.css">
+<link rel="stylesheet" href="css/threads.css">
   
 
 </head>
@@ -31,7 +33,8 @@ $result = mysql_query($sql);
 
 
 
-<div class ="size">
+<div id ="wrapper">
+<div id="header">
   <h1 class="box1">AGEチャンネル（Aちゃん）</h1>
   <div id="logout" class="box4">
   <form method="post" action="logout.php">
@@ -40,19 +43,9 @@ $result = mysql_query($sql);
 </form>
 </div>
 <div class="box3"></div>
-  <div class="nav">
+  <?php include( $_SERVER['DOCUMENT_ROOT'] . '/common/global_menu.php'); ?>
 
-<ul class="nl clearFix">
-<li><a href="index.php">TOP PAGE</a></li>
-<li><a href="rule.php">GUIDLINES</a></li>
-<li><a href="#">DEVELOPMENT</a></li>
-<li><a href="https://github.com/vixage/-internal-systems">GITHUB SOURCE</a></li>
-<li><a href="mailto:f.ochiai@vixage.co.jp">CONTACT</a></li>
-</ul>
-
-</div>
-
-<div id="fb-root"></div>
+  </div>
 
 
 <div class="boxsize">
@@ -62,12 +55,12 @@ $result = mysql_query($sql);
 <h3>注意事項</h3>
 <p>投稿内容が管理されず内容が荒れるスレッドは管理人が削除します。<br>
 内容が管理されないスレッドとは、この<a href="rule.php">ガイドライン</a>に反する内容を含むものです。</p>
-  <p>頑張って作ったので良ければ皆さん使ってくださいー！ヾ(。゜▽゜)ﾉ梨汁ﾌﾞｼｬｰ:;:.,*;”</p>
+  <p>頑張って作ったので良ければ皆さん使ってくださいー！ヾ(。゜▽゜)ﾉ:;:.,*;”</p>
 
   </div>
 
   
-  <div class="waku">
+  <div class="threadwaku">
  <h2>スレッド作成</h2>
 <form  action="thread_new2.php" method="post">
 <table>
@@ -102,7 +95,7 @@ $result = mysql_query($sql);
 </div>
   
   <div class="box3"></div>
-<table class="sample_01" width="950px">
+<table class="thread_style" width="950px">
 <tbody>
 <tr>
 <th>作成日時</th>
@@ -155,11 +148,6 @@ paging($limit, $page);
 
 ?>
 
-<p><a href="index.php">トップページに戻る</a></p>
-
-
-<footer>        
-        <p>(C)2016 VIXAGE created by Fumitaka Ochiai</p>
-        </footer>
+<?php include( $_SERVER['DOCUMENT_ROOT'] . '/common/footer.php'); ?>
 </body>
 </html>

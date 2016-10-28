@@ -1,13 +1,11 @@
 ﻿<?php
+require_once 'common/DbManager.php';
 
 // セッション開始
 session_start();
 
 
-$db['host'] = "localhost";  // DBサーバのURL
-$db['user'] = "root";  // ユーザー名
-$db['pass'] = "1125";  // ユーザー名のパスワード
-$db['dbname'] = "vixage";  // データベース名
+
 
 // エラーメッセージ、登録完了メッセージの初期化
 $errorMessage = "";
@@ -22,6 +20,9 @@ if (isset($_POST["signUp"])) {
         $errorMessage = 'パスワードが未入力です。';
     } else if (empty($_POST["password2"])) {
         $errorMessage = 'パスワードが未入力です。';
+    }else if($_POST["password"] != $_POST["password2"]) {
+        $errorMessage = 'パスワードが同じではありません。';
+    
     }else if($_POST["password3"] != "tm227005"){
         
         header("Location: ban.php");
@@ -31,16 +32,17 @@ if (isset($_POST["signUp"])) {
     if (!empty($_POST["username"]) && !empty($_POST["password"]) && !empty($_POST["password2"]) && $_POST["password"] == $_POST["password2"]) {
         // 入力したユーザIDとパスワードを格納
         $username = $_POST["username"];
-        setcookie($username,$namae,time() -60*60*24*30);
+        
         $password = $_POST["password"];
         $userid = uniqid();
 
         // 2. ユーザIDとパスワードが入力されていたら認証する
-        $dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbname']);
+       // $dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbname']);
 
         // 3. エラー処理
         try {
-            $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
+            $pdo = $db = connect();
+            $db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 
             $stmt = $pdo->prepare("INSERT INTO users(name, password,userid) VALUES (?,?,?)");
 
@@ -53,9 +55,7 @@ if (isset($_POST["signUp"])) {
             // $e->getMessage() でエラー内容を参照可能（デバック時のみ表示）
             // echo $e->getMessage();
         }
-    } else if($_POST["password"] != $_POST["password2"]) {
-        $errorMessage = 'パスワードに誤りがあります。';
-    }
+    } 
 }
 ?>
 
@@ -65,32 +65,49 @@ if (isset($_POST["signUp"])) {
             <meta charset="UTF-8">
             <title>ユーザーの追加</title>
             <link rel="stylesheet" href="css/style.css">
+            <link rel="stylesheet" href="css/menu.css">
+            <link rel="stylesheet" href="css/threads.css">
 
     </head>
     <body>
-        <div class="size">
+        <div id="wrapper">
         <h1>ユーザー情報を追加してください（管理者専用）</h1>
         <!-- $_SERVER['PHP_SELF']はXSSの危険性があるので、actionは空にしておく -->
         <!-- <form id="loginForm" name="loginForm" action="<?php print($_SERVER['PHP_SELF']) ?>" method="POST"> -->
         <form id="loginForm" name="loginForm" action="" method="POST">
-            <div class="border2">
-                <legend>新規登録フォーム</legend>
-                <div><font color="#ff0000"><?php echo $errorMessage ?></font></div>
+<table class="thread_style">
+<div><font color="#ff0000"><?php echo $errorMessage ?></font></div>
                 <div><font color="#0000ff"><?php echo $SignUpMessage ?></font></div>
-                <label for="username">ユーザー名</label><input type="text" id="username" name="username" placeholder="ユーザー名を入力" value="<?php if (!empty($_POST["username"])) {echo htmlspecialchars($_POST["username"], ENT_QUOTES);} ?>">
-                
-                <br>
-                <label for="password">パスワード</label><input type="password" id="password" name="password" value="" placeholder="パスワードを入力">
-                <br>
-                <label for="password2">パスワード(確認用)</label><input type="password" id="password2" name="password2" value="" placeholder="再度パスワードを入力">
-                <br>
-                <label for="password3">管理者用パスワード</label><input type="password" id="password3" name="password3" value="" placeholder="管理者のみ知ることが出来るパスワードです。">
-                <br>
-                <input type="submit" id="signUp" name="signUp" value="新規登録">
-            </div>
-        </form>
-        <br>
-        <form action="sign.php">
+  
+  <tr>
+    <th>ユーザー名</th>
+    <td><input type="text" id="username" name="username" placeholder="ユーザー名を入力" value="<?php if (!empty($_POST["username"])) {echo htmlspecialchars($_POST["username"], ENT_QUOTES);} ?>"></td>
+  </tr>
+  <tr>
+    <th>パスワード</th>
+    
+    <td><input type="password" id="password" name="password" value="" placeholder="パスワードを入力"></td>
+  </tr>
+  <tr>
+    <th>パスワード（確認用）</th>
+    
+    <td><input type="password" id="password2" name="password2" value="" placeholder="再度パスワードを入力"></td>
+  </tr>
+  <tr>
+    <th>管理者パスワード</th>
+    
+    <td><input type="password" id="password3" name="password3" value="" placeholder="管理者のみ知ることが出来るパスワードです。"></td>
+  </tr>
+  
+    
+    
+    
+     <tr><th> <input type="submit" id="signUp" name="signUp" value="新規登録">    </th>
+     <td></td></tr>
+  
+</table>
+</form>
+      <form action="sign.php">
             <input type="submit" value="戻る">
         </form>
         <footer>        

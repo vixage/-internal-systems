@@ -1,5 +1,6 @@
 ﻿<?php
-include 'includes.php';
+include 'common/checkLogin.php';
+require_once 'common/DbManager.php';
 
 if(empty($_POST['name'])){
 	$name = "とあるAGE社員";
@@ -17,16 +18,9 @@ $body = $_POST['body'];
 $id2 = $_POST['id'];
 
 $body = nl2br($body);
-
-
-
-$dsn = 'mysql:host=localhost;dbname=vixage;charset=utf8';
-$user= 'root';
-$password = '1125';
-
 	
            try {
-            $db = new PDO($dsn, $user, $password);
+            $db = connect();
 			$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 			mysql_query("set names utf-8");
 			//プリペアドステートメント作成
