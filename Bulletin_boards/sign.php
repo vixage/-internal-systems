@@ -68,6 +68,7 @@ if (isset($_POST["login"])) {
             }
         } catch (PDOException $e) {
             $errorMessage = 'データベースエラー';
+            print('Error:'.$e->getMessage());
             //$errorMessage = $sql;
             // $e->getMessage() でエラー内容を参照可能（デバック時のみ表示）
             // echo $e->getMessage();
@@ -82,20 +83,20 @@ if (isset($_POST["login"])) {
             <meta charset="UTF-8">
             <div id="up">
             <title id="up">ログイン</title></div>
+            <link rel="stylesheet" href="css/style.css">
             <link rel="stylesheet" href="css/sign.css">
            
     </head>
     <body>
-    <div class ="color">
-    <div class ="size">
+   
+    <div id="wrapper">
         
         <!--<img src="image/AGEMANALL.png" width="950px">-->
         
         <h1>ログイン</h1>
         <div class="box">
         
-        <!-- $_SERVER['PHP_SELF']はXSSの危険性があるので、actionは空にしておく -->
-        <!-- <form id="loginForm" name="loginForm" action="<?php print($_SERVER['PHP_SELF']) ?>" method="POST"> -->
+        
         <form id="loginForm" name="loginForm" action="" method="POST">
             
                 
@@ -113,7 +114,7 @@ if (isset($_POST["login"])) {
         </div>
         <p><a href="form.php">パスワードを忘れたら</a></p>
         </div>
-        </div>
+        
 
         <div class="size">
         <div id="box">

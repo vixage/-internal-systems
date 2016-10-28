@@ -1,19 +1,13 @@
 <?php
 include 'common/checkLogin.php';
-
 $number = 20;
-
-
 //DB接続
 $dbh=mysql_connect ("localhost", "root", "1125") or die ('I cannot connect to the database because: ' . mysql_error());
 mysql_select_db ("vixage");
-
 $page = 0;
 if(isset($_GET['page']) && $_GET['page'] > 0){
   $page = intval($_GET['page']) -1;
 }
-
-
 //スレッドを取得
 $sql = "SELECT * FROM threads order by created_at desc";
 $result = mysql_query($sql);
@@ -119,7 +113,6 @@ $result = mysql_query($sql);
 
 <hr>
 <?php
-
 function paging($limit,$page,$disp=5){
     //$dispはページ番号の表示数
     $page = empty($_GET["page"])? 1:$_GET["page"];
@@ -145,7 +138,6 @@ $limit = 10;//最大ページ数
 $page = empty($_GET["page"])? 1:$_GET["page"];//ページ番号
  
 paging($limit, $page);
-
 ?>
 
 <?php include( $_SERVER['DOCUMENT_ROOT'] . '/common/footer.php'); ?>

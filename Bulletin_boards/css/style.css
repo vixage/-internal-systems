@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 
 /* 一括で全ての要素の余白をゼロに指定 */
@@ -112,3 +112,6 @@ table td{
 	float: left;
 }
 
+.color8{
+background-color: #DDDDDD;
+}
