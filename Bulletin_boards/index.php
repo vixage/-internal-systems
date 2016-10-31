@@ -1,6 +1,9 @@
+
 <?php
 include 'common/checkLogin.php';
 $number = 20;
+
+$ip = $_SERVER["REMOTE_ADDR"];
 //DB接続
 $dbh=mysql_connect ("localhost", "root", "1125") or die ('I cannot connect to the database because: ' . mysql_error());
 mysql_select_db ("vixage");
@@ -45,6 +48,7 @@ $result = mysql_query($sql);
 
 <div class="boxsize">
 <h2>この掲示板について</h2>
+
   <p>この掲示板はVixAgeの社員専用掲示板です。<br>
   <p>会社に関することはもちろん,、趣味や遊びのことなど使用用途は各自にお任せいたします！<br>
 <h3>注意事項</h3>
@@ -80,6 +84,8 @@ $result = mysql_query($sql);
   <tr>
     <td><input type="hidden" name="type" value="create" /></td>
     <td><input type="hidden" name="type" value="$id" /></td>
+
+    
     
   </tr>
   <tr>
@@ -103,6 +109,7 @@ $result = mysql_query($sql);
   <td><?php echo $thread['created_at'];?></td>
   <td><a href="thread.php?id=<?php echo $thread['id'];?>"><?php echo $thread['title'];?></a></td>
   <td><?php echo $thread['name'];?></td>
+  
   
   
   </tr>

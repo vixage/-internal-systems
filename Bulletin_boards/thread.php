@@ -1,8 +1,13 @@
-﻿<?php
+<?php
 include 'common/checkLogin.php';
 
 // 1ページに表示されるコメントの数
   $num = 10;
+  /*
+  
+  */
+
+  //仮IPアドレス$ip = "1234";
 
 
 //DB接続
@@ -38,7 +43,7 @@ $result_res = mysql_query($sql_res);
 
 <div class="boxsize">
 <h3 class="threadtitle">タイトル:<?php echo $thread['title'];?></h3>
-<p>名前:<?php echo $thread['name'];?>作成日時:<?php echo $thread['created_at'];?></p>
+<p>名前:<?php echo $thread['name'];?>作成日時:<?php echo $thread['created_at'];?>IPアドレス:<?php echo $thread['ipadress'];?></p>
 <p><?php echo $thread['body'];?></p>
 <!--<form action="delete2.php" method="post">
       <input type="hidden" name="id" value="<?php echo $id?>">
@@ -66,6 +71,11 @@ $result_res = mysql_query($sql_res);
     <td>
       <input type="hidden" name="id" value="<?php echo $id;?>" />
       <input type="hidden" name="type" value="create" />
+      <input type="hidden" name="ip" value="<?php echo $ip
+
+
+      ;?>" />
+
     </td>
     <!--<tr>
     <th>削除<br>パスワート゛<br>(数字4桁)</th>
@@ -86,7 +96,11 @@ $result_res = mysql_query($sql_res);
 <?php while($res = mysql_fetch_array($result_res)):?>
   
   <div class="color8">
-  <p>ID:<?php echo $res['id'];?>名前:<?php echo $res['name'];?>投稿日時:<?php echo $res['created_at'];?></p></div>
+  <p>
+  <!--ID:<?php echo $res['id'];?>-->
+  名前:<?php echo $res['name'];?>投稿日時:<?php echo $res['created_at'];?>
+    IPアドレス:<?php echo $res['ipadress'];?>
+  </p></div>
   <p><?php echo $res['body'];?></p>
     
   <form action="delete.php" method="post">

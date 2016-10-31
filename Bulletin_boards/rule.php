@@ -4,6 +4,8 @@
   <title>ヴィックスグループ専用掲示板</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/sign.css">
+  <link rel="stylesheet" href="css/menu.css">
+
 
 </head>
 <body>

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 include 'common/checkLogin.php';
 require_once 'common/DbManager.php';
 
@@ -13,26 +13,29 @@ else{
 
 $title = $_POST['title'];
 $body = $_POST['body'];
+//$ip = $_POST['ip'];
 
 //$pass = $_POST['pass'];
-$id2 = $_POST['id'];
+//$id2 = $_POST['id'];
 
 $body = nl2br($body);
 	
            try {
             $db = connect();
 			$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
-			mysql_query("set names utf-8");
+			$ip = $_SERVER["REMOTE_ADDR"];
+			
 			//プリペアドステートメント作成
             $stmt = $db->prepare("
-            INSERT INTO threads (name,title,body,created_at)
-            VALUES(:name,:title,:body,now())"
+            INSERT INTO threads (name,title,body,created_at,ipadress)
+            VALUES(:name,:title,:body,now(),:ip)"
             );
 
             //パラメーターを割り当て
 $stmt->bindParam(':name',$name,PDO::PARAM_STR);
 $stmt->bindParam(':title',$title,PDO::PARAM_STR);
 $stmt->bindParam(':body',$body,PDO::PARAM_STR);
+$stmt->bindParam(':ip',$ip,PDO::PARAM_STR);
 //$stmt->bindParam(':pass',$pass,PDO::PARAM_STR);
 
 //クエリの実行
@@ -46,7 +49,6 @@ die('エラー：'.$e->getMessage());
 
 	
 
-	//スレッド画面に遷移
-	header("Location: thread_new.php");
+	
 
 ?>
