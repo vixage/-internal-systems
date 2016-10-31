@@ -17,6 +17,7 @@ $result = mysql_query($sql);
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   <title>ヴィックスグループ専用掲示板</title>
+  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/menu.css">
 <link rel="stylesheet" href="css/threads.css">
