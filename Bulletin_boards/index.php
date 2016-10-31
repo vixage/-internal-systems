@@ -1,4 +1,3 @@
-
 <?php
 include 'common/checkLogin.php';
 $number = 20;
