@@ -13,6 +13,7 @@ else{
 
 $title = $_POST['title'];
 $body = $_POST['body'];
+$img = $_POST['image'];
 //$ip = $_POST['ip'];
 
 //$pass = $_POST['pass'];
@@ -27,8 +28,8 @@ $body = nl2br($body);
 			
 			//プリペアドステートメント作成
             $stmt = $db->prepare("
-            INSERT INTO threads (name,title,body,created_at,ipadress)
-            VALUES(:name,:title,:body,now(),:ip)"
+            INSERT INTO threads (name,title,body,created_at,ipadress,image)
+            VALUES(:name,:title,:body,now(),:ip,:img)"
             );
 
             //パラメーターを割り当て
@@ -36,6 +37,7 @@ $stmt->bindParam(':name',$name,PDO::PARAM_STR);
 $stmt->bindParam(':title',$title,PDO::PARAM_STR);
 $stmt->bindParam(':body',$body,PDO::PARAM_STR);
 $stmt->bindParam(':ip',$ip,PDO::PARAM_STR);
+$stmt->bindParam(':img',$img,PDO::PARAM_STR);
 //$stmt->bindParam(':pass',$pass,PDO::PARAM_STR);
 
 //クエリの実行

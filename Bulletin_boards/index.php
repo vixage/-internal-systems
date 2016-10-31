@@ -1,4 +1,3 @@
-
 <?php
 include 'common/checkLogin.php';
 $number = 20;
@@ -20,7 +19,7 @@ $result = mysql_query($sql);
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   <title>ヴィックスグループ専用掲示板</title>
-  <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
+  
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/menu.css">
 <link rel="stylesheet" href="css/threads.css">
@@ -32,29 +31,20 @@ $result = mysql_query($sql);
 
 
 <div id ="wrapper">
-<div id="header">
-  <h1 class="box1">AGEチャンネル（Aちゃん）</h1>
-  <div id="logout" class="box4">
-  <form method="post" action="logout.php">
-    
-    <input type="submit" name="submit" value="ログアウト" />
-</form>
-</div>
-<div class="box3"></div>
-  <?php include( $_SERVER['DOCUMENT_ROOT'] . '/common/global_menu.php'); ?>
 
-  </div>
+<?php include( $_SERVER['DOCUMENT_ROOT'] . '/common/global_menu.php'); ?>
 
 
 <div class="boxsize">
-<h2>この掲示板について</h2>
+<h2 class="block1">この掲示板について</h2>
 
   <p>この掲示板はVixAgeの社員専用掲示板です。<br>
-  <p>会社に関することはもちろん,、趣味や遊びのことなど使用用途は各自にお任せいたします！<br>
-<h3>注意事項</h3>
+  会社に関することはもちろん,、趣味や遊びのことなど使用用途は各自にお任せいたします！<br>
+<h2 class="block2">注意事項</h3>
 <p>投稿内容が管理されず内容が荒れるスレッドは管理人が削除します。<br>
-内容が管理されないスレッドとは、この<a href="rule.php">ガイドライン</a>に反する内容を含むものです。</p>
-  <p>頑張って作ったので良ければ皆さん使ってくださいー！ヾ(。゜▽゜)ﾉ:;:.,*;”</p>
+内容が管理されないスレッドとは、
+<br>この<a href="rule.php">ガイドライン</a>に反する内容を含むものです。<br>
+  頑張って作ったので良ければ皆さん使ってくださいー！ヾ(。゜▽゜)ﾉ:;:.,*;”</p>
 
   </div>
 
@@ -77,6 +67,13 @@ $result = mysql_query($sql);
     <th>内容</th>
     <td><textarea name="body" style="height:170px" maxlength="1000" ></textarea></td>
   </tr>
+
+<tr>
+<th>画像</th>
+<td><input type="file" name="image"></td>
+</tr>
+  
+  
  <!--<tr>
     <th>削除パスワート゛(数字4桁)：</th>
     <td><input type="text" name="pass" maxlength="4"></td>

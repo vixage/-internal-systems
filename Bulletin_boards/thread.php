@@ -38,13 +38,15 @@ $result_res = mysql_query($sql_res);
 
 </head>
 <body>
-<?php include( $_SERVER['DOCUMENT_ROOT'] . '/common/global_menu.php'); ?>
 <div id ="wrapper">
+<?php include( $_SERVER['DOCUMENT_ROOT'] . '/common/global_menu.php'); ?>
+
 
 <div class="boxsize">
-<h3 class="threadtitle">タイトル:<?php echo $thread['title'];?></h3>
+<h3 class="block5">タイトル:<?php echo $thread['title'];?></h3>
 <p>名前:<?php echo $thread['name'];?>作成日時:<?php echo $thread['created_at'];?>IPアドレス:<?php echo $thread['ipadress'];?></p>
 <p><?php echo $thread['body'];?></p>
+<p><?php echo $thread['image'];?></p>
 <!--<form action="delete2.php" method="post">
       <input type="hidden" name="id" value="<?php echo $id?>">
       削除パスワード：<input type="password" name="pass">
@@ -92,10 +94,10 @@ $result_res = mysql_query($sql_res);
 <div class="box3"></div>
    
 
-
+<div class="boxsize">
 <?php while($res = mysql_fetch_array($result_res)):?>
   
-  <div class="color8">
+  <div class="block3">
   <p>
   <!--ID:<?php echo $res['id'];?>-->
   名前:<?php echo $res['name'];?>投稿日時:<?php echo $res['created_at'];?>
@@ -112,7 +114,9 @@ $result_res = mysql_query($sql_res);
 
 
 ?>
+</div>
 
+<div class="box3"></div>
 
 
 <?php include( $_SERVER['DOCUMENT_ROOT'] . '/common/footer.php'); ?>

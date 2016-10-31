@@ -3,12 +3,15 @@
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   <title>ヴィックスグループ専用掲示板</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/sign.css">
+  
   <link rel="stylesheet" href="css/menu.css">
 
 
 </head>
 <body>
+<div id ="wrapper">
+<div id ="text">
+
 <?php include( $_SERVER['DOCUMENT_ROOT'] . '/common/global_menu.php'); ?>
 
 <h1>■AGEチャンネル（仮）概要</h1>
@@ -93,6 +96,9 @@ AGEチャンネル（仮）のガイドラインは誰の許可なくAGEチャ�
 　　　　 |||　||　|||<br>
 　　　　　 ili　ili<br>
 　　　　　､ﾊ/|,,､</p>
+</div>
 <?php include( $_SERVER['DOCUMENT_ROOT'] . '/common/footer.php'); ?>
+</div>
+</div>
 </body>
 </html>
