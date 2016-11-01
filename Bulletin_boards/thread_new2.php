@@ -17,7 +17,6 @@ $img = $_POST['image'];
 //$ip = $_POST['ip'];
 
 //$pass = $_POST['pass'];
-$id2 = $_POST['id'];
 
 $body = nl2br($body);
 	

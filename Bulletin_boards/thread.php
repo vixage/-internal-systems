@@ -3,23 +3,53 @@ include 'common/checkLogin.php';
 // 1ページに表示されるコメントの数
   $num = 10;
 //DB接続
-$dbh=mysql_connect ("localhost", "root", "1125") or die ('I cannot connect to the database because: ' . mysql_error());
-mysql_select_db ("vixage");
+$dsn = 'mysql:host=localhost;dbname=vixage;charset=utf8';
+  $user = 'root';
+  $password = '1125';
 //スレッドIDを取得
 $id = $_GET['id'];
+//ページング機能
+$page2 = 0;
+  if (isset($_GET['page2']) && $_GET['page2'] > 0){
+    $page2 = intval($_GET['page2']) -1;
+  }
+
 //スレッドを取得
-$sql_thread = "SELECT * FROM threads where id = " . $id;
-$result_thread = mysql_query($sql_thread);
-$thread = mysql_fetch_array($result_thread);
-//レスを取得
-$sql_res = "SELECT * FROM responses where thread_id = " . $id . " order by created_at desc";
-$result_res = mysql_query($sql_res);
+
+try{
+    $db = new PDO($dsn, $user, $password);
+    $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    // プリペアドステートメントを作成
+    $thread = $db->prepare(
+      "SELECT * FROM threads where id = " . $id
+    );
+
+    $result_res = $db->prepare(
+      "SELECT * FROM responses where thread_id = $id 
+    
+      ");
+
+    $page2 = $page2 * $num;
+    $result_res->bindParam(':page2',$page2,PDO::PARAM_INT);
+    $result_res->bindParam(':num',$num,PDO::PARAM_INT);
+    // クエリの実行
+    $thread->execute();
+    // クエリの実行
+    $result_res->execute();
+   
+  } catch(PDOException $e){
+    echo "エラー：" . $e->getMessage();
+  }
+
+  
+
+
 ?>
 
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title><?php echo $thread['title'];?></title>
+<title>スレッド掲示板</title>
 <link rel="stylesheet" href="css/style.css">
  <link rel="stylesheet" href="css/menu.css">
 
@@ -30,15 +60,19 @@ $result_res = mysql_query($sql_res);
 
 
 <div class="boxsize">
-<h3 class="block5">タイトル:<?php echo $thread['title'];?></h3>
-<p>名前:<?php echo $thread['name'];?>作成日時:<?php echo $thread['created_at'];?>IPアドレス:<?php echo $thread['ipadress'];?></p>
-<p><?php echo $thread['body'];?></p>
-<p><?php echo $thread['image'];?></p>
+<?php 
+while ($row = $thread->fetch()):?>
+<h3 class="block5">タイトル:<?php echo $row['title'];?></h3>
+<p>名前:<?php echo $row['name'];?>作成日時:<?php echo $row['created_at'];?>IPアドレス:<?php echo $row['ipadress'];?></p>
+<p><?php echo $row['body'];?></p>
+<p><?php echo $row['image'];?></p>
 <!--<form action="delete2.php" method="post">
       <input type="hidden" name="id" value="<?php echo $id?>">
       削除パスワード：<input type="password" name="pass">
       <input type="submit" value="削除">
     </form>-->
+
+  <?php endwhile;?>
     </div>
 
     <div class="threadwaku">
@@ -80,26 +114,51 @@ $result_res = mysql_query($sql_res);
    
 
 <div class="boxsize">
-<?php while($res = mysql_fetch_array($result_res)):?>
+<?php 
+while ($row2 = $result_res->fetch()):?>
   
-  <div class="block3">
-  <p>
+  <p class="block3">
   <!--ID:<?php echo $res['id'];?>-->
-  名前:<?php echo $res['name'];?>投稿日時:<?php echo $res['created_at'];?>
-    IPアドレス:<?php echo $res['ipadress'];?>
-  </p></div>
-  <p><?php echo $res['body'];?></p>
+  名前:<?php echo $row2['name'];?>投稿日時:<?php echo $row2['created_at'];?>
+    IPアドレス:<?php echo $row2['ipadress'];?>
+  </p>
+  <p><?php echo $row2['body'];?></p>
     
+  <!--
   <form action="delete.php" method="post">
       <input type="hidden" name="id" value="<?php echo $id?>">
-      <!--削除パスワード：<input type="password" name="pass">
-      <input type="submit" value="削除">-->
-    </form>
-<?php endwhile;
-?>
+      削除パスワード：<input type="password" name="pass">
+      <input type="submit" value="削除">
+    </form>-->
+<?php 
+endwhile;?>
 </div>
 
 <div class="box3"></div>
+
+<?php
+
+// ページ数の表示
+  try {
+    // プリペアドステートメント作成
+    $result_res = $db->prepare("SELECT COUNT(*) FROM responses ");
+    // クエリの実行
+    $result_res->execute();
+  } catch (PDOException $e){
+    echo "エラー：" . $e->getMessage();
+  }
+
+  // コメントの件数を取得
+  $comments = $result_res->fetchColumn();
+  // ページ数を計算
+  $max_page = ceil($comments / $num);
+  echo '<p>';
+  for ($i = 1; $i <= $max_page; $i++){
+    echo '<a href="thread.php?id='.$id.'&?page2=' . $i . '">' . $i . '</a>&nbsp;';
+  }
+  echo '</p>';
+?>
+
 
 
 <?php include( $_SERVER['DOCUMENT_ROOT'] . '/common/footer.php'); ?>
