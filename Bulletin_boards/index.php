@@ -1,18 +1,40 @@
 <?php
 include 'common/checkLogin.php';
-$number = 20;
+$num = 10;
 
 $ip = $_SERVER["REMOTE_ADDR"];
 //DB接続
-$dbh=mysql_connect ("localhost", "root", "1125") or die ('I cannot connect to the database because: ' . mysql_error());
-mysql_select_db ("vixage");
-$page = 0;
-if(isset($_GET['page']) && $_GET['page'] > 0){
-  $page = intval($_GET['page']) -1;
-}
-//スレッドを取得
-$sql = "SELECT * FROM threads order by created_at desc";
-$result = mysql_query($sql);
+$dsn = 'mysql:host=localhost;dbname=vixage;charset=utf8';
+  $user = 'root';
+  $password = '1125';
+
+  //ページ数が指定されているとき
+  $page = 0;
+  if (isset($_GET['page']) && $_GET['page'] > 0){
+    $page = intval($_GET['page']) -1;
+  }
+
+  try{
+    $db = new PDO($dsn, $user, $password);
+    $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    // プリペアドステートメントを作成
+    $sql = $db->prepare(
+      "SELECT * FROM threads order by created_at DESC LIMIT :page, :num"
+
+    );
+    // パラメータを割り当て
+    $page = $page * $num;
+    $sql->bindParam(':page', $page, PDO::PARAM_INT);
+    $sql->bindParam(':num', $num, PDO::PARAM_INT);
+    
+    // クエリの実行
+    $sql->execute();
+  } catch(PDOException $e){
+    echo "エラー：" . $e->getMessage();
+  }
+  
+
+
 ?>
 
 <html>
@@ -101,49 +123,47 @@ $result = mysql_query($sql);
 <th>作成者</th>
 
 </tr>
-<?php while($thread = mysql_fetch_array($result)):?>
+<?php 
+while ($row = $sql->fetch()):?>
   <tr>
-  <td><?php echo $thread['created_at'];?></td>
-  <td><a href="thread.php?id=<?php echo $thread['id'];?>"><?php echo $thread['title'];?></a></td>
-  <td><?php echo $thread['name'];?></td>
+  <td><?php echo $row['created_at'];?></td>
+  <td><a href="thread.php?id=<?php echo $row['id'];?>"><?php echo $row['title'];?></a></td>
+  <td><?php echo $row['name'];?></td>
   
   
   
   </tr>
 <?php endwhile;?>
-
-</tbody>
+  </tbody>
 </table>
 
 
-<hr>
+
+
 <?php
-function paging($limit,$page,$disp=5){
-    //$dispはページ番号の表示数
-    $page = empty($_GET["page"])? 1:$_GET["page"];
-     
-    $next = $page+1;//前のページ番号
-    $prev = $page-1;//次のページ番号
-     
-    if($page != 1 ) {//最初のページ以外で「前へ」を表示
-         print '<a href="?page='.$prev.'">&laquo; 前へ</a>';
-    }
-    if($page < $limit){//最後のページ以外で「次へ」を表示
-        print '<a href="?page='.$next.'">次へ &raquo;</a>';
-    }
-     
-    /*確認用
-    print "current:".$page."<br>";
-    print "next:".$next."<br>";
-    print "prev:".$prev."<br>";*/
- 
-}
- 
-$limit = 10;//最大ページ数
-$page = empty($_GET["page"])? 1:$_GET["page"];//ページ番号
- 
-paging($limit, $page);
+
+// ページ数の表示
+  try {
+    // プリペアドステートメント作成
+    $sql = $db->prepare("SELECT COUNT(*) FROM threads");
+    // クエリの実行
+    $sql->execute();
+  } catch (PDOException $e){
+    echo "エラー：" . $e->getMessage();
+  }
+
+  // コメントの件数を取得
+  $comments = $sql->fetchColumn();
+  // ページ数を計算
+  $max_page = ceil($comments / $num);
+  echo '<p>';
+  for ($i = 1; $i <= $max_page; $i++){
+    echo '<a href="index.php?page=' . $i . '">' . $i . '</a>&nbsp;';
+  }
+  echo '</p>';
 ?>
+
+
 
 <?php include( $_SERVER['DOCUMENT_ROOT'] . '/common/footer.php'); ?>
 </body>

@@ -1,29 +1,16 @@
 <?php
 include 'common/checkLogin.php';
-
 // 1ページに表示されるコメントの数
   $num = 10;
-  /*
-  
-  */
-
-  //仮IPアドレス$ip = "1234";
-
-
 //DB接続
 $dbh=mysql_connect ("localhost", "root", "1125") or die ('I cannot connect to the database because: ' . mysql_error());
 mysql_select_db ("vixage");
-
-
-
 //スレッドIDを取得
 $id = $_GET['id'];
-
 //スレッドを取得
 $sql_thread = "SELECT * FROM threads where id = " . $id;
 $result_thread = mysql_query($sql_thread);
 $thread = mysql_fetch_array($result_thread);
-
 //レスを取得
 $sql_res = "SELECT * FROM responses where thread_id = " . $id . " order by created_at desc";
 $result_res = mysql_query($sql_res);
@@ -74,8 +61,6 @@ $result_res = mysql_query($sql_res);
       <input type="hidden" name="id" value="<?php echo $id;?>" />
       <input type="hidden" name="type" value="create" />
       <input type="hidden" name="ip" value="<?php echo $ip
-
-
       ;?>" />
 
     </td>
@@ -111,8 +96,6 @@ $result_res = mysql_query($sql_res);
       <input type="submit" value="削除">-->
     </form>
 <?php endwhile;
-
-
 ?>
 </div>
 
