@@ -1,18 +1,12 @@
 <?php
-
+include 'common/signDB.php';
 // セッション開始
 session_start();
 
 
 if(isset($_SESSION['USERID'])){
-header("Location:index.php");
+    header("Location:index.php");
 }
-
-$db['host'] = "localhost";  // DBサーバのURL
-$db['user'] = "root";  // ユーザー名
-$db['pass'] = "1125";  // ユーザー名のパスワード
-$db['dbname'] = "vixage";  // データベース名
-
 // エラーメッセージの初期化
 $errorMessage = "";
 
@@ -79,63 +73,63 @@ if (isset($_POST["login"])) {
 
 <!doctype html>
 <html>
-    <head>
-            <meta charset="UTF-8">
-            <div id="up">
-            <title id="up">ログイン</title></div>
-            <link rel="stylesheet" href="css/style.css">
-            <link rel="stylesheet" href="css/sign.css">
-           
+<head>
+    <meta charset="UTF-8">
+    <div id="up">
+        <title id="up">ログイン</title></div>
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/sign.css">
+
     </head>
     <body>
-   
-    <div id="wrapper">
-        
-        <!--<img src="image/AGEMANALL.png" width="950px">-->
-        
-        <h1>ログイン</h1>
-        <div class="box">
-        
-        
-        <form id="loginForm" name="loginForm" action="" method="POST">
-            
-                
-                <p><?php echo $errorMessage ?></p>
-                <label for="userid"></label><input type="text" id="userid" name="userid" class="text" placeholder="ユーザーID" value="<?php if (!empty($_POST["userid"])) {echo htmlspecialchars($_POST["userid"], ENT_QUOTES);} ?>">
-                <br>
-                <label for="password"></label><input type="password" id="password" class="text" name="password" value="" placeholder="パスワード">
-                <br>
-                <br>
-                <input type="submit" id="login" name="login" value="ログイン" class="button">
-            
-        </form>
+
+        <div id="wrapper">
+
+            <!--<img src="image/AGEMANALL.png" width="950px">-->
+
+            <h1>ログイン</h1>
+            <div class="box">
 
 
-        </div>
-        <p><a href="form.php">パスワードを忘れたら</a></p>
+                <form id="loginForm" name="loginForm" action="" method="POST">
+
+
+                    <p><?php echo $errorMessage ?></p>
+                    <label for="userid"></label><input type="text" id="userid" name="userid" class="text" placeholder="ユーザーID" value="<?php if (!empty($_POST["userid"])) {echo htmlspecialchars($_POST["userid"], ENT_QUOTES);} ?>">
+                    <br>
+                    <label for="password"></label><input type="password" id="password" class="text" name="password" value="" placeholder="パスワード">
+                    <br>
+                    <br>
+                    <input type="submit" id="login" name="login" value="ログイン" class="button">
+
+                </form>
+
+
+            </div>
+            <p><a href="form.php">パスワードを忘れたら</a></p>
         </div>
         
 
         <div class="size">
-        <div id="box">
-        
-        <hr>
-       
-        <form method="post" action="reg.php">
+            <div id="box">
 
-        <p>まだIDがない方は<a href="form.php">こちら</a></p>
-    
-    <p>管理者の方はこちら<input type="submit" name="submit" value="新規ユーザー登録" /></p>
-</form>
-        
-        </div>
-        <hr>
-        <footer>        
-        <p>(C)2016 VIXAGE created by Fumitaka Ochiai</p>
-        </footer>
-        
+                <hr>
+
+                <form method="post" action="reg.php">
+
+                    <p>まだIDがない方は<a href="form.php">こちら</a></p>
+
+                    <p>管理者の方はこちら<input type="submit" name="submit" value="新規ユーザー登録" /></p>
+                </form>
+
+            </div>
+            <hr>
+            <footer>        
+                <p>(C)2016 VIXAGE created by Fumitaka Ochiai</p>
+            </footer>
+
 
         </div>
     </body>
     
-</html>
+    </html>
