@@ -1,8 +1,5 @@
 <?php
-include 'common/signDB.php';
-// セッション開始
 session_start();
-
 
 if(isset($_SESSION['USERID'])){
     header("Location:index.php");
@@ -12,31 +9,31 @@ $errorMessage = "";
 
 // ログインボタンが押された場合
 if (isset($_POST["login"])) {
-    // 1. ユーザIDの入力チェック
-    if (empty($_POST["userid"])) {  // emptyは値が空のとき
+    if (empty($_POST["userid"])) {
         $errorMessage = 'ユーザーIDが未入力です。';
-    } else if (empty($_POST["password"])) {
+    } 
+    else if (empty($_POST["password"])) {
         $errorMessage = 'パスワードが未入力です。';
     }
 
     if (!empty($_POST["userid"]) && !empty($_POST["password"])) {
         // 入力したユーザIDを格納
         $userid = $_POST["userid"];
-
         // 2. ユーザIDとパスワードが入力されていたら認証する
         $dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbname']);
-
         // 3. エラー処理
         try {
+            $db['host'] = "localhost";  // DBサーバのURL
+            $db['user'] = "root";  // ユーザー名
+            $db['pass'] = "tm227005";  // ユーザー名のパスワード
+            $db['dbname'] = "vixage";  // データベース名
             $pdo = new PDO($dsn, $db['user'], $db['pass'], array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
             $stmt = $pdo->prepare('SELECT * FROM users WHERE userid = ?');
             $stmt->execute(array($userid));
 
             $password = $_POST["password"];
-
             if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                if (password_verify($password, $row['password'])) {
                     session_regenerate_id(true);
 
                     // 入力したIDのユーザー名を取得
@@ -44,6 +41,7 @@ if (isset($_POST["login"])) {
                     $stmt = $pdo->query($sql);
                     foreach ($stmt as $row) {
                         $row['name'];  // ユーザー名
+
                     }
                     setcookie('name',$row['name'],time() +3600*60);
                     $_SESSION["USERID"] = $row['name'];
@@ -51,10 +49,7 @@ if (isset($_POST["login"])) {
                     session_regenerate_id(true);
                     header("Location: index.php");  // メイン画面へ遷移
                     exit();  // 処理終了
-                } else {
-                    // 認証失敗
-                    $errorMessage = 'ユーザーIDあるいはパスワードに誤りがあります。';
-                }
+                
             } else {
                 // 4. 認証成功なら、セッションIDを新規に発行する
                 // 該当データなし
@@ -63,9 +58,7 @@ if (isset($_POST["login"])) {
         } catch (PDOException $e) {
             $errorMessage = 'データベースエラー';
             print('Error:'.$e->getMessage());
-            //$errorMessage = $sql;
-            // $e->getMessage() でエラー内容を参照可能（デバック時のみ表示）
-            // echo $e->getMessage();
+            
         }
     }
 }
@@ -84,9 +77,6 @@ if (isset($_POST["login"])) {
     <body>
 
         <div id="wrapper">
-
-            <!--<img src="image/AGEMANALL.png" width="950px">-->
-
             <h1>ログイン</h1>
             <div class="box">
 

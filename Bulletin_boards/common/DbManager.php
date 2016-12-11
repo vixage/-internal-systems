@@ -2,7 +2,7 @@
 function connect() {
 	$dsn = 'mysql:host=localhost;dbname=vixage;charset=utf8';
 	$user= 'root';
-	$password = '1125';
+	$password = 'tm227005';
 
 	try {
 		$db = new PDO($dsn, $user, $password);
