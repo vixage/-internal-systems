@@ -1,0 +1,17 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+	text-align: center;
+	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka,
+		"ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+	padding: 0;
+	margin: auto;
+	margin-top: 100px;
+	background-color: white;
+	width: 400px;
+	height: 500px;
+}
+
+table {
+	background-color: #ECEDEF;
+}

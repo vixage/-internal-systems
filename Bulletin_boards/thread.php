@@ -1,6 +1,6 @@
 <?php
-include 'common/checkLogin.php';
-include 'common/DbManager.php';
+//include 'common/checkLogin.php';
+include 'db/DbManager.php';
 // 1ページに表示されるコメントの数
 $num = 10;
 //スレッドIDを取得
@@ -14,14 +14,14 @@ $page2 = 0;
 //スレッドを取得
 
   try{
-    $db = connect();
-    $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    $db = new DB ();
+    $dbdb = $db->connect();
     // プリペアドステートメントを作成
-    $thread = $db->prepare(
+    $thread = $dbdb->prepare(
       "SELECT * FROM threads where id = " . $id
       );
 
-    $result_res = $db->prepare(
+    $result_res = $dbdb->prepare(
       "SELECT * FROM responses where thread_id = $id 
       
       ");

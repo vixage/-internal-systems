@@ -3,7 +3,7 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<title>ヴィックスグループ専用掲示板</title>
 	<link rel="stylesheet" href="css/style.css">
-	
+	<link rel="stylesheet" href="./css/bootstrap.css">
 	<link rel="stylesheet" href="css/menu.css">
 
 
@@ -57,45 +57,45 @@
 									また、投稿時にはクッキーに氏名と、表示形式、時間を保存します。<br>
 									以上のルールを守りつつ、楽しくいきましょう ！！！</p>
 
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<p>最後まで読んでくれてありがとなし汁ブシャー</p>
-
-
-									<p>%ﾐ ｷｬｯﾎｰ♪<br>
-										　　　 γ´　　　｀ヽ<br>
-										　　　 i.　●　 ●　i<br>
-										　　”∩. ¨　∇　¨ ﾞつ 梨汁ﾌﾞｼﾞｭｰ！<br>
-										　　　ヽ ───‐ ノ<br>
-										　　　　)廿 ∞　入<br>
-										　　　./――――.ヽ<br>
-										　 　 (.＿／⌒＼＿.)<br>
-										<br>
-										　　　　 |||　||　|||<br>
-										　　　　　 ili　ili<br>
-										　　　　　､ﾊ/|,,､</p>
+									<div class="container">
+  <form method="post">
+						<table style="background-color: #CCDDFF;">
+							<tr>
+								<td><br></td>
+							</tr>
+							<tr>
+								<td>
+									<div class="input-group input-group-lg">
+										<span class="input-group-addon" id="basic-addon1"
+											style="width: 150px;">ID</span>
+										<input type="text" class="form-control" placeholder="アカウント"
+											aria-describedby="basic-addon1" name="userID"
+											style="width: 250px;">
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div class="input-group input-group-lg">
+										<span class="input-group-addon" id="basic-addon1"
+											style="width: 150px;">パスワード</span>
+										<input type="password" class="form-control"
+											placeholder="パスワード" aria-describedby="basic-addon1"
+											name="password" style="width: 250px;">
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td><br></td>
+							</tr>
+						</table>
+						<div>
+							<input class="btn btn-primary btn-lg btn-block" type="submit"
+								name="Login" value="ログイン">
+						</div>
+					</form>
+	</div>
+									
 									</div>
 									<?php include( $_SERVER['DOCUMENT_ROOT'] . '/common/footer.php'); ?>
 								</div>
