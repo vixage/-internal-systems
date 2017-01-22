@@ -1,9 +1,21 @@
+<?php
+if (isset($_POST['Logout'])) {
+
+	if(isset($_SESSION['USERID'])){
+		unset($_SESSION['USERID']);
+	}
+	setcookie("name",'', time() - 3600*60);
+
+	header('Location:login.php');
+}
+
+?>
+
 <div id="header">
   <h1 class="box1"><a href="index.php"><img src="/image/Desktop.png"></a></h1>
   <div id="logout" class="box4">
-  <form method="post" action="logout.php">
-    
-    <input type="submit" name="submit" value="ログアウト" />
+  <form method="post">
+    <input type="submit" name="Logout" value="ログアウト" class="btn-primary"/>
 </form>
 </div>
 <div class="box3"></div>

@@ -1,10 +1,18 @@
 <?php
+<<<<<<< HEAD
 include './db/connectDB.php';
+=======
+//include 'common/checkLogin.php';
+include 'db/DbManager.php';
+// 1ページに表示されるコメントの数
+$num = 10;
+>>>>>>> origin/master
 //スレッドIDを取得
 
 $id = $_GET['id'];
 
 //スレッドを取得
+<<<<<<< HEAD
 $db = new DB();
 $dbdb =$db -> dbConnect();
 $stmt = $dbdb -> prepare(
@@ -14,6 +22,27 @@ $stmt = $dbdb -> prepare(
 $result_res = $dbdb->prepare(
   "SELECT * FROM response where ARTICLE_ID = $id
   ");
+=======
+
+  try{
+    $db = new DB ();
+    $dbdb = $db->connect();
+    // プリペアドステートメントを作成
+    $thread = $dbdb->prepare(
+      "SELECT * FROM threads where id = " . $id
+      );
+
+    $result_res = $dbdb->prepare(
+      "SELECT * FROM responses where thread_id = $id 
+      
+      ");
+    /*
+
+    $page2 = $page2 * $num;
+    $result_res->bindParam(':page2',$page2,PDO::PARAM_INT);
+    $result_res->bindParam(':num',$num,PDO::PARAM_INT);
+    */
+>>>>>>> origin/master
     // クエリの実行
 $stmt->execute();
     // クエリの実行
