@@ -1,0 +1,11 @@
+#attend{
+  float: left;
+  width:30%;
+  text-align: center;
+}
+
+#form{
+  border: 4px double #ddd;
+    padding: 2em;
+    padding-top: 8px;
+}
