@@ -1,7 +1,9 @@
 ﻿<?php
 session_start();
 if(!isset($_SESSION['USERID'])){
-	header('Location:sign.php');
+	header('Location:login.php');
 	exit();
 }
+
+
 ?>

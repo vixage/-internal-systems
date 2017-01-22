@@ -2,17 +2,17 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<title>ヴィックスグループ専用掲示板</title>
-	<link rel="stylesheet" href="css/style.css">
-	
-	<link rel="stylesheet" href="css/menu.css">
+	<link rel="stylesheet" href="./css/navi.css">
+  <link rel="stylesheet" href="./css/table.css">
+  <link rel="stylesheet" href="./css/form.css">
+  <link rel="stylesheet" href="./css/style.css">
 
 
 </head>
 <body>
-	<div id ="wrapper">
-		<div id ="text">
+	<div id ="size">
 
-			<?php include( $_SERVER['DOCUMENT_ROOT'] . '/common/global_menu.php'); ?>
+			<?php include('./common/menu.php'); ?>
 
 			<h1>■AGEチャンネル（仮）概要</h1>
 			<p>Vixグループ全体（communication/VIXX/real estate/AGE）に関することなら書き込みＯＫです。<br>
@@ -57,48 +57,9 @@
 									また、投稿時にはクッキーに氏名と、表示形式、時間を保存します。<br>
 									以上のルールを守りつつ、楽しくいきましょう ！！！</p>
 
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<br>
-									<p>最後まで読んでくれてありがとなし汁ブシャー</p>
 
-
-									<p>%ﾐ ｷｬｯﾎｰ♪<br>
-										　　　 γ´　　　｀ヽ<br>
-										　　　 i.　●　 ●　i<br>
-										　　”∩. ¨　∇　¨ ﾞつ 梨汁ﾌﾞｼﾞｭｰ！<br>
-										　　　ヽ ───‐ ノ<br>
-										　　　　)廿 ∞　入<br>
-										　　　./――――.ヽ<br>
-										　 　 (.＿／⌒＼＿.)<br>
-										<br>
-										　　　　 |||　||　|||<br>
-										　　　　　 ili　ili<br>
-										　　　　　､ﾊ/|,,､</p>
-									</div>
-									<?php include( $_SERVER['DOCUMENT_ROOT'] . '/common/footer.php'); ?>
-								</div>
+								<?php include( $_SERVER['DOCUMENT_ROOT'] . '/common/footer.php'); ?>
 							</div>
-						</body>
-						</html>
+						
+					</body>
+					</html>

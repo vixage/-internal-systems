@@ -18,26 +18,29 @@ if (isset($_POST["signUp"])) {
         $errorMessage = 'パスワードが同じではありません。';
     
     }else if($_POST["password3"] != "tm227005"){
-        $errorMessage = '管理者パスワードが異なります。';
         
+        header("Location: ban.php");
     }
-    if (!empty($_POST["username"]) && !empty($_POST["password"]) && !empty($_POST["password2"]) && $_POST["password"] == $_POST["password2"] && $_POST["password3"] == "tm227005"){
+    if (!empty($_POST["username"]) && !empty($_POST["password"]) && !empty($_POST["password2"]) && $_POST["password"] == $_POST["password2"]) {
         // 入力したユーザIDとパスワードを格納
         $username = $_POST["username"];
         
         $password = $_POST["password"];
         $userid = rand();
-        
+        // 2. ユーザIDとパスワードが入力されていたら認証する
+       // $dsn = sprintf('mysql: host=%s; dbname=%s; charset=utf8', $db['host'], $db['dbname']);
         // 3. エラー処理
         try {
             $pdo = $db = connect();
             $db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
             $stmt = $pdo->prepare("INSERT INTO users(name, password,userid) VALUES (?,?,?)");
-            $stmt->execute(array($username, password_hash($password, PASSWORD_DEFAULT),$userid));  // 
+            $stmt->execute(array($username, password_hash($password, PASSWORD_DEFAULT),$userid));  // パスワードのハッシュ化を行う（今回は文字列のみなのでbindValue(変数の内容が変わらない)を使用せず、直接excuteに渡しても問題ない）
+            //$uniqueid = $pdo->lastinsertid();  // 登録した(DB側でauto_incrementした)IDを$useridに入れる
             $SignUpMessage = '登録が完了しました。'.$username.'の登録IDは '. $userid. ' です。パスワードは '. $password. ' です。';  // ログイン時に使用するIDとパスワード
         } catch (PDOException $e) {
             echo $e->getMessage();
-            
+            // $e->getMessage() でエラー内容を参照可能（デバック時のみ表示）
+            // echo $e->getMessage();
         }
     } 
 }
@@ -57,7 +60,8 @@ if (isset($_POST["signUp"])) {
         <div id="wrapper">
         <?php include( $_SERVER['DOCUMENT_ROOT'] . '/common/global_menu.php'); ?>
         <h1>ユーザー情報を追加してください（管理者専用）</h1>
-        
+        <!-- $_SERVER['PHP_SELF']はXSSの危険性があるので、actionは空にしておく -->
+        <!-- <form id="loginForm" name="loginForm" action="<?php print($_SERVER['PHP_SELF']) ?>" method="POST"> -->
         <form id="loginForm" name="loginForm" action="" method="POST">
 <table class="thread_style">
 <div><font color="#ff0000"><?php echo $errorMessage ?></font></div>
