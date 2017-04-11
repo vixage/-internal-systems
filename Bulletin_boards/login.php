@@ -12,10 +12,10 @@
 		include './db/DbManager.php';
 		
 		session_start();
-if(isset($_SESSION['USERID'])){
-	header('Location:index.php');
-	exit();
-}
+		if(isset($_SESSION['USERID'])){
+		header('Location:index.php');
+		exit();
+		}
 		// ログイン押下時
 		if (isset($_POST['Login'])) {
 
@@ -33,27 +33,27 @@ if(isset($_SESSION['USERID'])){
 			if (empty ( $errorMessage )) {
 				$db = new DB ();
 				$dbdb = $db->connect ();
-				$stmt = $dbdb->prepare ( "select * from users where userid =:USER_ID AND password =:USER_PASS" );
-				$stmt->bindParam ( ':USER_ID', $_POST ['userID'], PDO::PARAM_STR );
-				$stmt->bindParam ( ':USER_PASS', $_POST ['password'], PDO::PARAM_STR );
+				$stmt = $dbdb->prepare ("select * from account where USER_ID =:USER_ID AND USER_PASS =:USER_PASS");
+				$stmt->bindParam(':USER_ID', $_POST['userID'],PDO::PARAM_STR );
+				$stmt->bindParam ( ':USER_PASS', $_POST['password'],PDO::PARAM_STR );
 				$stmt->execute ();
 
-				// ID・パスワードが一致した場合
-				if ($row = $stmt->fetch ()) {
-					// DBからユーザ情報を取得USER_ID,USER_NAME,EMAILをセッションに格納
-					$_SESSION ['USER_ID'] = $row ['name'];
-					
-					header ( 'Location:index.php' );
-					exit ();
-				} else {
-
+				// ID・パスワードが一致した場合の処理
+				//条件判断未実装
+				if(1==1){
+				while($row = $stmt->fetch()){
+				// DBからユーザ情報を取得USER_ID,USER_NAME,EMAILをセッションに格納
+				$_SESSION['USERID'] =$row['USER_ID'];
+			  }
+			  header ('Location:index.php');
+				exit ();
+				}else {
 					$errorMessage .= "「ID」「パスワード」が存在しません";
 				}
 			} else {
-
 				$errorMessage .= "が入力されていません";
-			}
-		} ?>
+			}}?>
+		 
 	</head>
 <body>
 	<div>
@@ -106,6 +106,7 @@ if(isset($_SESSION['USERID'])){
 								name="Login" value="ログイン">
 						</div>
 					</form>
+					<p>ログインがまだの方は<a href="register.php">こちら</a></p>
 
 			</div>
 

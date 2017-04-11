@@ -4,6 +4,4 @@ if(!isset($_SESSION['USERID'])){
 	header('Location:login.php');
 	exit();
 }
-
-
 ?>

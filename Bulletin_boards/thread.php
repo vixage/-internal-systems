@@ -1,18 +1,14 @@
 <?php
-<<<<<<< HEAD
+include './common/checkLogin.php';
 include './db/connectDB.php';
-=======
-//include 'common/checkLogin.php';
-include 'db/DbManager.php';
-// 1ページに表示されるコメントの数
-$num = 10;
->>>>>>> origin/master
+
+
 //スレッドIDを取得
 
 $id = $_GET['id'];
+$_SESSION['responseid'] = $id; 
 
 //スレッドを取得
-<<<<<<< HEAD
 $db = new DB();
 $dbdb =$db -> dbConnect();
 $stmt = $dbdb -> prepare(
@@ -22,27 +18,6 @@ $stmt = $dbdb -> prepare(
 $result_res = $dbdb->prepare(
   "SELECT * FROM response where ARTICLE_ID = $id
   ");
-=======
-
-  try{
-    $db = new DB ();
-    $dbdb = $db->connect();
-    // プリペアドステートメントを作成
-    $thread = $dbdb->prepare(
-      "SELECT * FROM threads where id = " . $id
-      );
-
-    $result_res = $dbdb->prepare(
-      "SELECT * FROM responses where thread_id = $id 
-      
-      ");
-    /*
-
-    $page2 = $page2 * $num;
-    $result_res->bindParam(':page2',$page2,PDO::PARAM_INT);
-    $result_res->bindParam(':num',$num,PDO::PARAM_INT);
-    */
->>>>>>> origin/master
     // クエリの実行
 $stmt->execute();
     // クエリの実行
@@ -66,24 +41,10 @@ if(isset($_POST['resNew'])){
     }
     //エラーメッセージがない場合
     if(empty($errorMessage)){
-      
-      $db = new DB();
-      $dbdb =$db -> dbConnect();
-      //プリペアドステートメント作成
-      $stmt = $dbdb->prepare("
-        INSERT INTO response(NAME,TITLE,TEXT,CREATE_DATE)
-       VALUES(:name,:title,:text,now())"
-       );
-
-            //パラメーターを割り当て
-      $stmt->bindParam(':name',$_SESSION['name'],PDO::PARAM_STR);
-      $stmt->bindParam(':title',$_SESSION['title'],PDO::PARAM_STR);
-      $stmt->bindParam(':text',$_SESSION['text'],PDO::PARAM_STR);
-
-//クエリの実行
-      $stmt->execute();
-
-      header("Location:index.php");
+      $_SESSION['name'] = $_POST['name'];
+      $_SESSION['title'] = $_POST['title'];
+      $_SESSION['text'] = $_POST['text'];
+      header('Location:thread_conf.php');
       exit();
     }
   }
@@ -114,9 +75,24 @@ if(isset($_POST['resNew'])){
     }
     ?>
     <hr>
+
+    <?php 
+    while ($res = $result_res->fetch()){?>
+
+    <p>
+      名前:<?php echo $res['NAME'];?>投稿日時:<?php echo $res['CREATE_DATE'];?>
+    </p>
+    <p><?php echo $res['TEXT'];?></p>
+    <?php 
+  }
+  ?>
+
+  <div class="clear"></div>
+  <hr>
     <h1>書き込み</h1>
     <form method="post">
       <table>
+
         <tr>
           <th>名前</th>
           <td><input type="text" name="name" value="" maxlength="20"/></td>
@@ -133,6 +109,7 @@ if(isset($_POST['resNew'])){
           <td>
             
             <input type="hidden" name="token" value="<?php echo hash("sha256",session_id());?>">
+            <input type="hidden" name="id" value="<?php $id ;?>">
           </td>
           <td>
             <input type="submit" name="resNew" value="投稿" /></td>
@@ -141,20 +118,6 @@ if(isset($_POST['resNew'])){
         </table>
       </form>
     <div class="clear"></div>
-    <hr>
-
-    <?php 
-    while ($res = $result_res->fetch()){?>
-
-    <p>
-      名前:<?php echo $res['NAME'];?>投稿日時:<?php echo $res['CREATE_DATE'];?>
-    </p>
-    <p><?php echo $res['TEXT'];?></p>
-    <?php 
-  }
-  ?>
-
-  <div class="clear"></div>
   <?php include('./common/footer.php'); ?>
 
 </body>

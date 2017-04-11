@@ -4,7 +4,7 @@ class DB{
 	try {
 	$dsn = 'mysql:host=localhost;dbname=vixage;charset=utf8';
 	$user= 'root';
-	$password = '1125';
+	$password = 'tm227005';
 	$db = new PDO($dsn, $user, $password);
 	$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 	} catch (PDOException $e) {

@@ -2,7 +2,7 @@
 	 class DB{
 		 public function  dbConnect(){
 		 	try{
-				$dsn = 'mysql:host=localhost;dbname=Tapioka;charset=utf8';
+				$dsn = 'mysql:host=localhost;dbname=vixage;charset=utf8';
 				$user = 'root';
 				$password = 'tm227005';
 				$db = new PDO($dsn,$user,$password);
